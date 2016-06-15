@@ -1,0 +1,22 @@
+{
+  "name": "BONavigationPullToRefresh",
+  "version": "0.1.0",
+  "summary": "A short description of BONavigationPullToRefresh.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/BONavigationPullToRefresh",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Bruno Oliveira": "bm.oliveira.dev@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/BONavigationPullToRefresh.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "BONavigationPullToRefresh/Classes/**/*"
+}

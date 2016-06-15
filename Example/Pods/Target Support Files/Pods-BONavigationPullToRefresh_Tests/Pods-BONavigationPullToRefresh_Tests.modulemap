@@ -1,0 +1,6 @@
+framework module Pods_BONavigationPullToRefresh_Tests {
+  umbrella header "Pods-BONavigationPullToRefresh_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

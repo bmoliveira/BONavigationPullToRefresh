@@ -1,0 +1,6 @@
+framework module BONavigationPullToRefresh {
+  umbrella header "BONavigationPullToRefresh-umbrella.h"
+
+  export *
+  module * { export * }
+}
