@@ -36,16 +36,28 @@ let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(4 * NSEC_PER_SEC))
 
 override func viewDidLoad() {
   super.viewDidLoad()
-  let view = DefaultRefreshingView()
-  view.backgroundColor = UIColor.blueColor()
-  self.navigationController?
-    .configureRefreshingItem(scrollView: self.scrollView, refreshingView: view) {
-      dispatch_after(self.fakeLoadingTime, dispatch_get_main_queue()) {
-        self.navigationController?.endRefreshing()
-      }
+
+  // Maximum height for the loading view
+  let maxHeight: CGFloat = self.navigationController?.navigationBar.absoluteHeight ?? 10
+
+  // Configurations to animate the default RefreshableView
+  let configurations = DefaultRefreshingViewConfigurations(maxHeight: maxHeight,
+                                                           image: UIImage(named: "sample"))
+
+  let refreshableView = DefaultRefreshingView(configurations: configurations)
+
+
+  addNavigationPullToRefresh(toScrollView: self.scrollView, refreshingView: refreshableView) {
+    let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC))
+    dispatch_after(fakeLoadingTime, dispatch_get_main_queue()) {
+      self.endRefreshing()
+    }
   }
 }
 ```
+
+
+
 
 ### RefreshingView
 The refreshingView is a UIView that conforms to protocol RefreshableView:
@@ -65,13 +77,44 @@ public protocol RefreshableView {
   func updateLoadingItem(percentage: CGFloat)
 }
 ```
-
 You can use the DefaultRefreshingView that only updates its alpha as it is shown in the example.
+
+#### DefaultRefreshingView
+
+```swift
+  // configurations is a DefaultRefreshingViewConfigurations
+  DefaultRefreshingView(configurations: configurations)
+```
+
+#### DefaultRefreshingViewConfigurations
+
+```swift
+public struct DefaultRefreshingViewConfigurations {
+
+// Maximum view Size
+var maxHeight: CGFloat = 80
+
+  // View inset
+  var inset = CGPoint.zero
+
+  // Image to be shown
+  var image: UIImage?
+
+  // Scaling option of the UIImageView
+  var imageOptions = UIViewContentMode.ScaleToFill
+
+  // Animation time
+  var animationTime: NSTimeInterval = 1
+
+  // Fade animation Time
+  var animationFadeTime: NSTimeInterval = 0.5
+}
+```
 
 ### End refreshing
 
 ```swift
-self.navigationController?.endRefreshing()
+self.endRefreshing()
 ```
 
 ### Lifecycle
@@ -80,23 +123,20 @@ To keep the viewControllers stack lifecycle its needed to call two more methods 
 ```swift
 override func viewWillAppear(animated: Bool) {
   super.viewWillAppear(animated)
-  navigationController?.viewControllerWillShow()
+  viewControllerWillShow()
 }
 
 override func viewWillDisappear(animated: Bool) {
   super.viewWillDisappear(animated)
-  navigationController?.viewControllerWillDisappear()
+  viewControllerWillDisappear()
 }
 ```
 
 ### Configurations
 
 ```swift
-// Distance needed to trigger refresh
-PTRConfiguration.sharedInstance.maxDistance = 80
-
-// Loading view height
-PTRConfiguration.sharedInstance.barHeight = 10
+  // Distance needed to trigger refresh
+  public var triggerDistance: CGFloat = 80
 
 ```
 
