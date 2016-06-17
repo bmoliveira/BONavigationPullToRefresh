@@ -8,38 +8,39 @@
 
 import UIKit
 
-extension UINavigationController {
-
+extension UIViewController {
   // You must call when the ViewController appears to pause loader when viewController is pushed
   public func viewControllerWillShow() {
-    guard navigationItem.refreshingView is UIView else {
+    guard let refreshingView = navigationItem.refreshingView as? UIView else {
       print("Invalid view was set on navigation item")
       return
     }
 
-    configureRefreshingItem()
-
+    refreshingView.alpha = 0
     if navigationItem.refreshing {
       navigationItem.refreshingView?.startRefreshing()
+    } else if refreshingView.superview == nil {
+      addViewToNavigationBar(refreshingView)
     }
   }
 
   // You must call when the ViewController will disappear to pause loader when viewController is popped
   // or pushed
   public func viewControllerWillDisappear() {
-    guard let view = navigationItem.refreshingView as? UIView else {
+    guard let refreshingView = navigationItem.refreshingView as? UIView else {
       print("Invalid view was set on navigation item")
       return
     }
 
-    view.removeFromSuperview()
-
+    refreshingView.alpha = 1
     if navigationItem.refreshing {
       navigationItem.refreshingView?.cancelRefreshing()
+    } else if refreshingView.superview != nil {
+      refreshingView.removeFromSuperview()
     }
   }
 
-  private func configureRefreshingItem() {
+  private func configureRefreshingItem(navigationItem: UINavigationItem) {
     guard let refreshingView = navigationItem.refreshingView as? UIView else {
       print("Refreshing view must be a UIView")
       return
@@ -49,20 +50,32 @@ extension UINavigationController {
       refreshingView.removeFromSuperview()
     }
 
-    navigationBar.addSubview(refreshingView)
-    refreshingView.frame = CGRect(x: self.navigationBar.bounds.minX,
-                        y: self.navigationBar.bounds.maxY,
-                        width: self.navigationBar.bounds.width,
-                        height: PTRConfiguration.sharedInstance.barHeight)
+    addViewToNavigationBar(refreshingView)
+
+    let width = navigationController?.navigationBar.bounds.width ?? 0
+    let absoluteY = navigationController?.navigationBar.absoluteY ?? 0
+    let minX = navigationController?.navigationBar.bounds.minX ?? 0
+
+    refreshingView.frame = CGRect(x: minX,
+                                  y: -absoluteY,
+                                  width: width,
+                                  height: 10)
+
+    refreshingView.clipsToBounds = false
     refreshingView.autoresizingMask = [.FlexibleWidth, .FlexibleTopMargin]
+  }
+
+  private func addViewToNavigationBar(view: UIView) {
+    navigationController?.navigationBar.insertSubview(view, atIndex: 1)
   }
 }
 
-extension UINavigationController {
 
-  // Con
-  public func configureRefreshingItem(scrollView scrollView: UIScrollView, refreshingView: RefreshableView,
-                                          startLoading: () -> Void) {
+// Add PullToRefresh to scrollview
+extension UIViewController {
+  public func addNavigationPullToRefresh(toScrollView scrollView: UIScrollView,
+                                                      refreshingView: RefreshableView,
+                                                      startLoading: () -> Void) {
 
     guard refreshingView is UIView else {
       print("Refreshing view must be a UIView")
@@ -71,7 +84,7 @@ extension UINavigationController {
 
     navigationItem.ptrScrollview = scrollView
     navigationItem.refreshingView = refreshingView
-    configureRefreshingItem()
+    configureRefreshingItem(navigationItem)
 
     navigationItem.ptrScrollview?.bindPTR(
       startedLoading: {
@@ -82,6 +95,7 @@ extension UINavigationController {
       updatePercentage: { percentage in
         self.navigationItem.refreshingView?.updateLoadingItem(percentage)
     })
+
   }
 
   public func endRefreshing() {
@@ -91,6 +105,18 @@ extension UINavigationController {
   }
 }
 
+extension UINavigationBar {
+
+  public var absoluteY: CGFloat {
+    let frame = self.superview?.convertRect(self.frame, toView: nil)
+    return frame?.origin.y ?? 0
+  }
+
+  public var absoluteHeight: CGFloat {
+    let frame = self.superview?.convertRect(self.frame, toView: nil)
+    return (frame?.size.height ?? 0) + absoluteY
+  }
+}
 
 // MARK: Associated Properties and constants
 extension UINavigationItem {

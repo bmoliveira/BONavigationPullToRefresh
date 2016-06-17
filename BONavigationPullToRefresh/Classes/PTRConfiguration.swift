@@ -9,13 +9,10 @@
 import UIKit
 
 public class PTRConfiguration {
-  public static var sharedInstance: PTRConfiguration {
+  public static var instance: PTRConfiguration {
     return PTRConfiguration()
   }
 
   // Distance needed to trigger refresh
-  public var maxDistance: CGFloat = 80
-
-  // Loading view height
-  public var barHeight: CGFloat = 10
+  public var triggerDistance: CGFloat = 80
 }

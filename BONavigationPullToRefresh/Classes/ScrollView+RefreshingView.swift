@@ -33,7 +33,7 @@ extension UIScrollView {
         return
       }
 
-      var percentage =  abs(self.currentYOffset) / PTRConfiguration.sharedInstance.maxDistance
+      var percentage =  abs(self.currentYOffset) / PTRConfiguration.instance.triggerDistance
       percentage = min(percentage, 1)
 
       // Guard positive percentage
