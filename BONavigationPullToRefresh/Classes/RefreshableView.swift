@@ -24,11 +24,23 @@ public protocol RefreshableView {
 
 
 public struct DefaultRefreshingViewConfigurations {
+
+  // Maximum view Size
   var maxHeight: CGFloat = 80
+
+  // View inset
   var inset = CGPoint.zero
+
+  // Image to be shown
   var image: UIImage?
+
+  // Scaling option of the UIImageView
   var imageOptions = UIViewContentMode.ScaleToFill
+
+  // Animation time
   var animationTime: NSTimeInterval = 1
+
+  // Fade animation Time
   var animationFadeTime: NSTimeInterval = 0.5
 
   public init (maxHeight: CGFloat = 80, inset: CGPoint = CGPoint.zero, image: UIImage? = nil,
