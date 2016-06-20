@@ -9,7 +9,7 @@
 import UIKit
 import BONavigationPullToRefresh
 
-class ExampleViewController: UIViewController, UIScrollViewDelegate {
+class ExampleViewController: UIViewController, NavigationPullRefreshable {
 
   @IBOutlet weak var scrollView: UIScrollView!
 
@@ -28,7 +28,7 @@ class ExampleViewController: UIViewController, UIScrollViewDelegate {
 
 
     addNavigationPullToRefresh(toScrollView: self.scrollView, refreshingView: refreshableView){
-        let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC))
+        let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0 * NSEC_PER_SEC))
         dispatch_after(fakeLoadingTime, dispatch_get_main_queue()) {
           self.endRefreshing()
         }

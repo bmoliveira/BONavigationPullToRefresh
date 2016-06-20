@@ -17,6 +17,10 @@
 		135B6326D35C977854AA0C12B3F6CB7D /* DSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627E4E84747227302312F1E22D114789 /* DSL.swift */; };
 		13BC34052ACF0897B973638DB1D3FF4C /* ErrorUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B7C1953D52C630B7CEA85DC7D30371 /* ErrorUtility.swift */; };
 		13CC849FA70CADF802470B6A90DCDF79 /* AllPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03AD566EC508F35AEBD09410C38B0113 /* AllPass.swift */; };
+		15F2767A1D182E51004C354E /* KVOObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F276791D182E51004C354E /* KVOObserver.swift */; };
+		15F2767C1D182E55004C354E /* UIViewController+NavigationRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2767B1D182E55004C354E /* UIViewController+NavigationRefreshable.swift */; };
+		15F2767E1D1830E8004C354E /* UINavigationItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2767D1D1830E8004C354E /* UINavigationItem+Extensions.swift */; };
+		15F276801D18315E004C354E /* DefaultRefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15F2767F1D18315E004C354E /* DefaultRefreshableView.swift */; };
 		1704B0A1A5E96D4B1E74A0649D0D444F /* QuickSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = 3973F89F7C13EAD4855CFC68BCC8511E /* QuickSpec.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1ED1A0BDE2AAB8E6EC76B0554D1F7D69 /* Quick-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 702D610886AA829A76EF79A25B88E1AC /* Quick-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1ED8C77E9422C66BBF56E6C10D5826F0 /* NMBExceptionCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = D365431FBA3C40A9570E9266B44005D7 /* NMBExceptionCapture.m */; };
@@ -26,7 +30,6 @@
 		2AF518908BA15BD7A01A15035531E610 /* NSBundle+CurrentTestBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B16739831A57E59BFE39E8BF50128C /* NSBundle+CurrentTestBundle.swift */; };
 		30AACAA8D51DC8C429577D9B67BB016C /* BeginWith.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203A5C5D36EAB5C74A7CA2C7F3E57854 /* BeginWith.swift */; };
 		31629295E87A24C98238C66D41983C49 /* BeVoid.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFB2D871B9C6D5C6EE2172BB9AFD2627 /* BeVoid.swift */; };
-		37872FC0724BD156ABCAD4C20BBADA86 /* UINavigationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEFA7C6EC4B24F40553A7CC657A39AD /* UINavigationExtensions.swift */; };
 		38F5CE4B4C59A81734A93E32D35B696E /* FailureMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A562213D0385708961C195D0CF8C45E /* FailureMessage.swift */; };
 		3A31D7555C65C459449C4741714BA0EA /* Quick.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EB79662DFF8CAC9A93BB403631D5490 /* Quick.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3D1BB98DEA422D8F173613EC715488B9 /* PostNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BF65FFEC8A084057E63EDF139D2BD1 /* PostNotification.swift */; };
@@ -143,6 +146,10 @@
 		0FDB1283429C85B3BF2F8EBB047A353B /* Pods-BONavigationPullToRefresh_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BONavigationPullToRefresh_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		12FD8C45CF9591F32C21657E578112C9 /* Quick-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Quick-prefix.pch"; sourceTree = "<group>"; };
 		14E1DC94DD47A6F91084F3EAA92AF552 /* Quick.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Quick.modulemap; sourceTree = "<group>"; };
+		15F276791D182E51004C354E /* KVOObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KVOObserver.swift; sourceTree = "<group>"; };
+		15F2767B1D182E55004C354E /* UIViewController+NavigationRefreshable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationRefreshable.swift"; sourceTree = "<group>"; };
+		15F2767D1D1830E8004C354E /* UINavigationItem+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+Extensions.swift"; sourceTree = "<group>"; };
+		15F2767F1D18315E004C354E /* DefaultRefreshableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultRefreshableView.swift; sourceTree = "<group>"; };
 		18D110A87EF135293B27C04BD720A8E8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B553784BFCCB55F63DD949E28D8FE18 /* Pods-BONavigationPullToRefresh_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BONavigationPullToRefresh_Tests-dummy.m"; sourceTree = "<group>"; };
 		1C369DE47B8FBDDF56994EF084D14F12 /* HooksPhase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HooksPhase.swift; path = Sources/Quick/Hooks/HooksPhase.swift; sourceTree = "<group>"; };
@@ -250,7 +257,6 @@
 		E2353FC0C41320250E7132DE6734F885 /* QuickConfiguration.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QuickConfiguration.m; path = Sources/Quick/Configuration/QuickConfiguration.m; sourceTree = "<group>"; };
 		E2DE7320F652DCF39EB6A1476F0C761B /* NimbleXCTestHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NimbleXCTestHandler.swift; path = Sources/Nimble/Adapters/NimbleXCTestHandler.swift; sourceTree = "<group>"; };
 		EA1C305082DBF75710A818FFBD2714D2 /* Nimble-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Nimble-umbrella.h"; sourceTree = "<group>"; };
-		ECEFA7C6EC4B24F40553A7CC657A39AD /* UINavigationExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UINavigationExtensions.swift; sourceTree = "<group>"; };
 		EDFB8E29723165EF1E70427E8A536DE3 /* ScrollView+RefreshingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ScrollView+RefreshingView.swift"; sourceTree = "<group>"; };
 		EFB2D871B9C6D5C6EE2172BB9AFD2627 /* BeVoid.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BeVoid.swift; path = Sources/Nimble/Matchers/BeVoid.swift; sourceTree = "<group>"; };
 		F17FBDF6FF6B666A3D102EDD81DFE416 /* Filter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Sources/Quick/Filter.swift; sourceTree = "<group>"; };
@@ -396,10 +402,13 @@
 		44CB93E3B4BF5A91C327151CB8138C1C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				ECEFA7C6EC4B24F40553A7CC657A39AD /* UINavigationExtensions.swift */,
+				15F2767F1D18315E004C354E /* DefaultRefreshableView.swift */,
+				15F276791D182E51004C354E /* KVOObserver.swift */,
 				DF8CC1D01B12CF7D197C10572EF28613 /* PTRConfiguration.swift */,
 				91A0B5329A2313A54A8A216AAF188784 /* RefreshableView.swift */,
 				EDFB8E29723165EF1E70427E8A536DE3 /* ScrollView+RefreshingView.swift */,
+				15F2767D1D1830E8004C354E /* UINavigationItem+Extensions.swift */,
+				15F2767B1D182E55004C354E /* UIViewController+NavigationRefreshable.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -819,8 +828,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15F2767E1D1830E8004C354E /* UINavigationItem+Extensions.swift in Sources */,
 				C39BF8AA337C98E9244BB4EF46D69ED6 /* BONavigationPullToRefresh-dummy.m in Sources */,
-				37872FC0724BD156ABCAD4C20BBADA86 /* UINavigationExtensions.swift in Sources */,
+				15F276801D18315E004C354E /* DefaultRefreshableView.swift in Sources */,
+				15F2767A1D182E51004C354E /* KVOObserver.swift in Sources */,
+				15F2767C1D182E55004C354E /* UIViewController+NavigationRefreshable.swift in Sources */,
 				FE163DEE3D445FD2E2E8549D4C19E615 /* PTRConfiguration.swift in Sources */,
 				BD2FC7DB96114DAAAFF9AC4BE28D6CA5 /* RefreshableView.swift in Sources */,
 				EF97847566A84DC32B0E3A1294FE9C43 /* ScrollView+RefreshingView.swift in Sources */,
