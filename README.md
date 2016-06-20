@@ -31,26 +31,28 @@ import BONavigationPullToRefresh
 ### Simple usecase
 
 ```swift 
-let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(4 * NSEC_PER_SEC))
-@IBOutlet weak var scrollView: UIScrollView!
-
-override func viewDidLoad() {
-  super.viewDidLoad()
-
-  // Maximum height for the loading view
-  let maxHeight: CGFloat = self.navigationController?.navigationBar.absoluteHeight ?? 10
-
-  // Configurations to animate the default RefreshableView
-  let configurations = DefaultRefreshingViewConfigurations(maxHeight: maxHeight,
-                                                           image: UIImage(named: "sample"))
-
-  let refreshableView = DefaultRefreshingView(configurations: configurations)
-
-
-  addNavigationPullToRefresh(toScrollView: self.scrollView, refreshingView: refreshableView) {
-    let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC))
-    dispatch_after(fakeLoadingTime, dispatch_get_main_queue()) {
-      self.endRefreshing()
+class ExampleViewController: UIViewController, NavigationPullRefreshable {
+  let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(4 * NSEC_PER_SEC))
+  @IBOutlet weak var scrollView: UIScrollView!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  
+    // Maximum height for the loading view
+    let maxHeight: CGFloat = self.navigationController?.navigationBar.absoluteHeight ?? 10
+  
+    // Configurations to animate the default RefreshableView
+    let configurations = DefaultRefreshingViewConfigurations(maxHeight: maxHeight,
+                                                             image: UIImage(named: "sample"))
+  
+    let refreshableView = DefaultRefreshingView(configurations: configurations)
+  
+  
+    addNavigationPullToRefresh(toScrollView: self.scrollView, refreshingView: refreshableView) {
+      let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC))
+      dispatch_after(fakeLoadingTime, dispatch_get_main_queue()) {
+        self.endRefreshing()
+      }
     }
   }
 }
