@@ -16,6 +16,8 @@ public protocol NavigationPullRefreshable {
 
   // You must call when the ViewController appears to pause loader when viewController is pushed
   func viewControllerWillShow()
+
+  // You must call when the ViewController didAppear to set the refreshable view below the title
   func viewControllerDidShow()
 
   // You must call when the ViewController will disappear to pause loader when viewController is popped

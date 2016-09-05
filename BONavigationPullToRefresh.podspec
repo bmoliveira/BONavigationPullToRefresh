@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name             = 'BONavigationPullToRefresh'
-s.version          = '0.3.0'
+s.version          = '0.9'
 s.summary       = 'Add PullToRefresh to a ScrollView with a custom view in UINavigationBar'
 s.description     = 'Add PullToRefresh to a ScrollView with a custom view in UINavigationBar.'
 s.homepage         = 'https://github.com/bmoliveira/BONavigationPullToRefresh'

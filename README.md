@@ -30,24 +30,24 @@ import BONavigationPullToRefresh
 
 ### Simple usecase
 
-```swift 
+```swift
 class ExampleViewController: UIViewController, NavigationPullRefreshable {
   let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(4 * NSEC_PER_SEC))
   @IBOutlet weak var scrollView: UIScrollView!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
-  
+
     // Maximum height for the loading view
     let maxHeight: CGFloat = self.navigationController?.navigationBar.absoluteHeight ?? 10
-  
+
     // Configurations to animate the default RefreshableView
     let configurations = DefaultRefreshingViewConfigurations(maxHeight: maxHeight,
                                                              image: UIImage(named: "sample"))
-  
+
     let refreshableView = DefaultRefreshingView(configurations: configurations)
-  
-  
+
+
     addNavigationPullToRefresh(toScrollView: self.scrollView, refreshingView: refreshableView) {
       let fakeLoadingTime = dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC))
       dispatch_after(fakeLoadingTime, dispatch_get_main_queue()) {
@@ -66,7 +66,7 @@ The refreshingView is a UIView that conforms to protocol RefreshableView:
 
 ```swift
 public protocol RefreshableView {
-  // View will start refreshing 
+  // View will start refreshing
   func startRefreshing()
 
   // Loading has beed canceled due to ViewController disapear
@@ -120,7 +120,7 @@ self.endRefreshing()
 ```
 
 ### Lifecycle
-To keep the viewControllers stack lifecycle its needed to call two more methods on your ViewController:
+To keep the viewControllers stack lifecycle its needed to call three more methods on your ViewController:
 
 ```swift
 override func viewWillAppear(animated: Bool) {
@@ -128,9 +128,38 @@ override func viewWillAppear(animated: Bool) {
   viewControllerWillShow()
 }
 
+override func viewDidAppear(animated: Bool) {
+  super.viewDidAppear(animated)
+  viewControllerDidShow()
+}
+
 override func viewWillDisappear(animated: Bool) {
   super.viewWillDisappear(animated)
   viewControllerWillDisappear()
+}
+
+```
+
+All the supported methods in the NavigationPullRefreshable are :
+
+```swift
+public protocol NavigationPullRefreshable {
+  // Configure the NavigationPullToRefresh
+  func addNavigationPullToRefresh(toScrollView scrollView: UIScrollView,
+                                               refreshingView: RefreshableView,
+                                               startLoading: () -> Void)
+
+  // You must call when the ViewController appears to pause loader when viewController is pushed
+  func viewControllerWillShow()
+
+  // You must call when the ViewController didAppear to set the refreshable view below the title
+  func viewControllerDidShow()
+
+  // You must call when the ViewController will disappear to pause loader when viewController is popped
+  // or pushed
+  func viewControllerWillDisappear()
+
+  func endRefreshing()
 }
 ```
 
