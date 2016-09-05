@@ -16,6 +16,7 @@ public protocol NavigationPullRefreshable {
 
   // You must call when the ViewController appears to pause loader when viewController is pushed
   func viewControllerWillShow()
+  func viewControllerDidShow()
 
   // You must call when the ViewController will disappear to pause loader when viewController is popped
   // or pushed
@@ -37,7 +38,12 @@ extension NavigationPullRefreshable where Self: UIViewController {
       navigationItem.refreshingView?.startRefreshing()
     } else if refreshingView.superview == nil {
       addViewToNavigationBar(refreshingView)
+      return
     }
+  }
+
+  public func viewControllerDidShow() {
+    (navigationItem.refreshingView as? UIView).map { addViewToNavigationBar($0) }
   }
 
   public func viewControllerWillDisappear() {
