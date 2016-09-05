@@ -45,7 +45,7 @@ extension NavigationPullRefreshable where Self: UIViewController {
   }
 
   public func viewControllerDidShow() {
-    (navigationItem.refreshingView as? UIView).map { addViewToNavigationBar($0) }
+    let _ = (navigationItem.refreshingView as? UIView).map { addViewToNavigationBar($0) }
   }
 
   public func viewControllerWillDisappear() {
